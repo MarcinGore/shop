@@ -3,6 +3,7 @@ package pl.training.shop;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.training.shop.common.PagedResult;
+import pl.training.shop.common.retry.Retry;
 import pl.training.shop.orders.Order;
 import pl.training.shop.orders.OrderService;
 import pl.training.shop.payments.Payment;
@@ -29,7 +30,9 @@ public class ShopService {
     public Order placeOrder(Order order){
         return orderService.add(order);
     }
-    public Payment payForOrder(Long orderId){
+
+    @Retry(numberRetry = 10)
+    public Payment payForOrder(Long orderId) throws RuntimeException{
         var order = orderService.getBy(orderId);
         var paymenRequest = PaymentRequest.builder()
                 .money(order.getTotalPrice())
@@ -37,7 +40,8 @@ public class ShopService {
         var payment = paymentService.process(paymenRequest);
         order.setPayment(payment);
         orderService.update(order);
-        return payment;
+        throw new RuntimeException();
+        //return payment;
     }
 }
 
