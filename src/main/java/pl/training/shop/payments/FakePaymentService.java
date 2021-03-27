@@ -7,6 +7,7 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import pl.training.shop.common.profiler.ExecutionTime;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -31,7 +32,7 @@ public class FakePaymentService implements PaymentService {
         this.eventPublisher = eventPublisher;
     }
 
-
+    @ExecutionTime
     @LogPayments
     @Override
     public Payment process(PaymentRequest paymentRequest){
