@@ -1,11 +1,13 @@
 package pl.training.shop.orders;
 
 import org.aspectj.weaver.ast.Or;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+@Repository
 public class HashMapOrderRepository implements OrderRepository{
 
     private Map<Long, Order> orders = new HashMap<>();

@@ -1,6 +1,7 @@
 package pl.training.shop;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import pl.training.shop.common.PagedResult;
 import pl.training.shop.orders.Order;
 import pl.training.shop.orders.OrderService;
@@ -10,6 +11,7 @@ import pl.training.shop.payments.PaymentService;
 import pl.training.shop.products.Product;
 import pl.training.shop.products.ProductService;
 
+@Service
 @RequiredArgsConstructor
 public class ShopService {
     private final OrderService orderService;

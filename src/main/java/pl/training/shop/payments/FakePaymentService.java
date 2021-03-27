@@ -47,7 +47,7 @@ public class FakePaymentService implements PaymentService {
 
     @PreDestroy
     public void destroy(){
-        log.info("PaymentService is goind down");
+        log.info("PaymentService is going down");
     }
 
 }

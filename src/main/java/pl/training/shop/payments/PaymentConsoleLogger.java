@@ -1,16 +1,23 @@
 package pl.training.shop.payments;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
+
+import java.util.Locale;
 
 @Aspect
 @Component
 @Log
+@RequiredArgsConstructor
 public class PaymentConsoleLogger {
 
-    private static final String LOG_FORMAT = "Platnosci %s zainicjowana";
+    private static final String MESSAGE_KEY="paymentInfo";
+
+    private final MessageSource messageSource;
 
     @AfterReturning(value = "@annotation(LogPayments)", returning = "payment")
     public void log(Payment payment){
@@ -19,7 +26,8 @@ public class PaymentConsoleLogger {
 
 
     private String createLogEntry(Payment payment){
-        return String.format(LOG_FORMAT,payment.getMoney());
+
+        return messageSource.getMessage(MESSAGE_KEY, new String[]{payment.getMoney().toString()}, Locale.getDefault());
     }
 
 }
