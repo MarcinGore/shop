@@ -4,6 +4,7 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +20,15 @@ public class FakePaymentService implements PaymentService {
 
     private final PaymentIdGenerator paymentIdGenerator;
     private final PaymentRepository paymentRepository;
+    private final ApplicationEventPublisher eventPublisher;
 
     @Autowired
     public FakePaymentService(@IdGenerator("incremental") PaymentIdGenerator paymentIdGenerator,
-                              PaymentRepository paymentRepository) {
+                              PaymentRepository paymentRepository,
+                              ApplicationEventPublisher eventPublisher) {
         this.paymentIdGenerator = paymentIdGenerator;
         this.paymentRepository = paymentRepository;
+        this.eventPublisher = eventPublisher;
     }
 
 
@@ -37,6 +41,7 @@ public class FakePaymentService implements PaymentService {
                 .timestamp(Instant.now())
                 .status(PaymentStatus.STARTED)
                 .build();
+        eventPublisher.publishEvent(new PaymentStatusChangedEvent(this,payment));
         return paymentRepository.save(payment);
     }
 
