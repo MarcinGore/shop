@@ -42,7 +42,8 @@ public class FakePaymentService implements PaymentService {
                 .status(PaymentStatus.STARTED)
                 .build();
         eventPublisher.publishEvent(new PaymentStatusChangedEvent(this,payment));
-        return paymentRepository.save(payment);
+       //throw new RuntimeException();
+         return paymentRepository.save(payment);
     }
 
     @PostConstruct
