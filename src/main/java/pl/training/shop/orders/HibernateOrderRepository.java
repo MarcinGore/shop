@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@Repository("orderRepository")
+@Repository
 @RequiredArgsConstructor
 public class HibernateOrderRepository implements OrderRepository{
 

@@ -10,7 +10,7 @@ import pl.training.shop.common.PagedResult;
 import java.util.List;
 
 @RequiredArgsConstructor
-@Repository("productRepository")
+@Repository
 public class HibernateProductRepository implements ProductRepository{
 
 

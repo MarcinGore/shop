@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 @RequiredArgsConstructor
-@Repository("paymentRepository")
+@Repository
 public class HibernatePaymentRepository implements PaymentRepository{
 
     private final SessionFactory sessionFactory;
