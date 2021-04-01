@@ -24,7 +24,7 @@ public class FakePaymentService implements PaymentService {
     private final ApplicationEventPublisher eventPublisher;
 
     @Autowired
-    public FakePaymentService(@IdGenerator("incremental") PaymentIdGenerator paymentIdGenerator,
+    public FakePaymentService(@IdGenerator("uuid") PaymentIdGenerator paymentIdGenerator,
                               PaymentRepository paymentRepository,
                               ApplicationEventPublisher eventPublisher) {
         this.paymentIdGenerator = paymentIdGenerator;

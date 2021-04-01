@@ -2,6 +2,7 @@ package pl.training.shop;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.training.shop.common.PagedResult;
 import pl.training.shop.common.retry.Retry;
 import pl.training.shop.orders.Order;
@@ -12,6 +13,7 @@ import pl.training.shop.payments.PaymentService;
 import pl.training.shop.products.Product;
 import pl.training.shop.products.ProductService;
 
+@Transactional
 @Service
 @RequiredArgsConstructor
 public class ShopService {
@@ -40,8 +42,8 @@ public class ShopService {
         var payment = paymentService.process(paymenRequest);
         order.setPayment(payment);
         orderService.update(order);
-        throw new RuntimeException();
-        //return payment;
+        //throw new RuntimeException();
+        return payment;
     }
 }
 

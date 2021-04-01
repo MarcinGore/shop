@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>pl.training.shop</groupId>
-    <artifactId>Spring-masterclass</artifactId>
+    <artifactId>spring-masterclass</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -14,6 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.8.0-M1</junit.version>
         <mockito.version>3.8.0</mockito.version>
+        <spring.version>5.3.5</spring.version>
     </properties>
 
     <build>
@@ -29,7 +30,12 @@
            <dependency>
                <groupId>org.springframework</groupId>
                <artifactId>spring-context</artifactId>
-               <version>5.2.6.RELEASE</version>
+               <version>${spring.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.springframework</groupId>
+               <artifactId>spring-orm</artifactId>
+               <version>${spring.version}</version>
            </dependency>
            <dependency>
                <groupId>org.aspectj</groupId>
@@ -43,6 +49,11 @@
                <scope>provided</scope>
            </dependency>
            <dependency>
+               <groupId>com.zaxxer</groupId>
+               <artifactId>HikariCP</artifactId>
+               <version>4.0.3</version>
+           </dependency>
+           <dependency>
                <groupId>org.javamoney.moneta</groupId>
                <artifactId>moneta-convert-imf</artifactId>
                <version>1.4</version>
@@ -53,6 +64,17 @@
                <artifactId>hibernate-validator</artifactId>
                <version>6.1.5.Final</version>
            </dependency>
+           <dependency>
+               <groupId>org.postgresql</groupId>
+               <artifactId>postgresql</artifactId>
+               <version>42.2.10</version>
+           </dependency>
+           <dependency>
+               <groupId>org.hibernate</groupId>
+               <artifactId>hibernate-core</artifactId>
+               <version>5.4.28.Final</version>
+           </dependency>
+
            <dependency>
                <groupId>javax.el</groupId>
                <artifactId>javax.el-api</artifactId>
